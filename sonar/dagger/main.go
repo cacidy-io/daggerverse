@@ -55,7 +55,7 @@ func (m *Sonar) Analyze(
 		WithWorkdir("/src").
 		WithSecretVariable("SONAR_TOKEN", token)
 
-	_, err := ctr.File("/src/sonar-project.properties").Contents()
+	_, err := ctr.File("/src/sonar-project.properties").Contents(ctx)
 	if err != nil {
 		if projectKey == "" || organization == "" {
 			return "", errors.New("sonar project key and organization are required")
